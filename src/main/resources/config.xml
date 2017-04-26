@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        classpath:org/springframework/beans/factory/xml/spring-beans-4.3.xsd"
+        >
+
+	<import resource="processors.xml"/>
+	<import resource="fetchers.xml"/>
+	<import resource="aop.xml"/>
+	
+    <bean id="dataLocations"
+        class="com.willyweather.historicaldataparser.appcore.models.SourceDestination">
+        <constructor-arg type="java.lang.String" value="https://drive.google.com/uc?export=download&amp;id=0B0QtYwzM6bVAZGNzUEhjeU9XRjg"/>
+    	<constructor-arg type="java.lang.String" value="target/data/historicaldata.dat"/>
+    </bean>
+    
+    <bean id="dataFetcher"
+        class="com.willyweather.historicaldataparser.datafetchers.DownloadAndUnzipDataFetcher">
+        <constructor-arg type="java.lang.String" value="target/historicaldata.gz"/>
+    	<constructor-arg ref="downloadDelegator"/>
+    	<constructor-arg ref="unzipDelegator"/>
+    </bean>
+    
+    <bean id="weatherDataParser"
+        class="com.willyweather.historicaldataparser.dataparsers.WeatherDataParserImpl">
+    </bean>
+    
+    <bean id="logger"
+        class="com.willyweather.historicaldataparser.appcore.loggers.DefaultLogger">
+    </bean>
+
+    <bean id="procedure"
+        class="com.willyweather.historicaldataparser.appcore.procedure.HistoricalDataParsingProcedure">
+        <constructor-arg ref="dataLocations"/>
+    	<constructor-arg ref="dataFetcher"/>
+    	<constructor-arg ref="weatherDataParser"/>
+    	<property name="logger" ref="logger" />
+    </bean>
+
+</beans>

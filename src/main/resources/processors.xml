@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+       classpath:org/springframework/beans/factory/xml/spring-beans-4.3.xsd">
+
+    <bean id="stn"
+        class="com.willyweather.historicaldataparser.dataprocessors.StnProcessor">
+    </bean>
+    
+    <bean id="wban"
+        class="com.willyweather.historicaldataparser.dataprocessors.WbanProcessor">
+    </bean>
+    
+    <bean id="yearmoda"
+        class="com.willyweather.historicaldataparser.dataprocessors.YearModaProcessor">
+    </bean>
+    
+    <bean id="temp"
+        class="com.willyweather.historicaldataparser.dataprocessors.TempProcessor">
+    </bean>
+    
+    <bean id="dewp"
+        class="com.willyweather.historicaldataparser.dataprocessors.DewpProcessor">
+    </bean>
+    
+    <bean id="slp"
+        class="com.willyweather.historicaldataparser.dataprocessors.SlpProcessor">
+    </bean>
+    
+    <bean id="stp"
+        class="com.willyweather.historicaldataparser.dataprocessors.StpProcessor">
+    </bean>
+    
+    <bean id="visib"
+        class="com.willyweather.historicaldataparser.dataprocessors.VisibProcessor">
+    </bean>
+    
+    <bean id="wdsp"
+        class="com.willyweather.historicaldataparser.dataprocessors.WdspProcessor">
+    </bean>
+    
+    <bean id="mxspd"
+        class="com.willyweather.historicaldataparser.dataprocessors.MxspdProcessor">
+    </bean>
+    
+    <bean id="gust"
+        class="com.willyweather.historicaldataparser.dataprocessors.GustProcessor">
+    </bean>
+    
+    <bean id="max"
+        class="com.willyweather.historicaldataparser.dataprocessors.MaxProcessor">
+    </bean>
+    
+    <bean id="min"
+        class="com.willyweather.historicaldataparser.dataprocessors.MinProcessor">
+    </bean>
+    
+    <bean id="prcp"
+        class="com.willyweather.historicaldataparser.dataprocessors.PrcpProcessor">
+    </bean>
+    
+    <bean id="sndp"
+        class="com.willyweather.historicaldataparser.dataprocessors.SndpProcessor">
+    </bean>
+    
+    <bean id="frshtt"
+        class="com.willyweather.historicaldataparser.dataprocessors.FrshttProcessor">
+    </bean>
+
+</beans>

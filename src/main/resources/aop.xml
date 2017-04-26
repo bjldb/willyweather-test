@@ -1,0 +1,77 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<beans 
+    xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        classpath:org/springframework/beans/factory/xml/spring-beans-4.3.xsd
+        http://www.springframework.org/schema/aop
+        classpath:org/springframework/aop/config/spring-aop-4.3.xsd">
+
+   	<aop:aspectj-autoproxy />
+   	
+   	<bean id="aopLogger"
+		class="com.willyweather.historicaldataparser.appcore.loggers.DefaultLogger">
+	</bean>
+
+	<bean id="methodTracingAspect"
+		class="com.willyweather.historicaldataparser.loggers.MethodTracerAspect">
+		<constructor-arg ref="aopLogger"/>
+	</bean>
+	
+	<bean id="exceptionTracingAspect"
+		class="com.willyweather.historicaldataparser.loggers.ExceptionTracerAspect">
+		<constructor-arg ref="aopLogger"/>
+	</bean>
+	
+	<bean id="fetchedDataTracingAspect"
+		class="com.willyweather.historicaldataparser.loggers.FetchedDataTracerAspect">
+		<constructor-arg ref="aopLogger"/>
+	</bean>
+	
+	<bean id="parsedWeatherDataTracingAspect"
+		class="com.willyweather.historicaldataparser.loggers.ParsedWeatherDataTracerAspect">
+		<constructor-arg ref="aopLogger"/>
+	</bean>
+	
+	<bean id="dataProcessingTracerAspect"
+		class="com.willyweather.historicaldataparser.loggers.DataProcessingTracerAspect">
+		<constructor-arg ref="aopLogger"/>
+	</bean>
+	
+	<aop:config>
+
+	  <aop:aspect id="methodTracer" ref="methodTracingAspect" >
+		<aop:pointcut id="trace"
+			expression="execution(* *(..)) &amp;&amp; !(execution(* com.willyweather.historicaldataparser.appcore.loggers.DefaultLogger.*(..)))" />
+		<aop:before method="trace" pointcut-ref="trace" />	
+	  </aop:aspect>
+	  
+	  <aop:aspect id="exceptionTracer" ref="exceptionTracingAspect" >	  
+	    <aop:pointcut id="exceptionThrown"
+	   		expression="execution(* *(..)) &amp;&amp; !(execution(* com.willyweather.historicaldataparser.appcore.loggers.DefaultLogger.*(..)))" />
+	    <aop:after-throwing method="logThrownException" throwing="error" pointcut-ref="exceptionThrown"  />
+	  </aop:aspect>
+	  
+	  <aop:aspect id="fetchedDataTracer" ref="fetchedDataTracingAspect" >	  
+	    <aop:pointcut id="fetchedData"
+	   		expression="execution(* *.fetchData(..))" />
+	    <aop:around method="logDataFetch" pointcut-ref="fetchedData"  />
+	  </aop:aspect>
+	  
+	  <aop:aspect id="parsedWeatherDataTracer" ref="parsedWeatherDataTracingAspect" >	  
+	    <aop:pointcut id="parsedWeatherData"
+	   		expression="execution(* *.parseWeatherData(..))" />
+	    <aop:after-returning method="logParsedWeatherData" returning="result" pointcut-ref="parsedWeatherData"  />
+	  </aop:aspect>
+	  
+	  <aop:aspect id="dataProcessingTracer" ref="dataProcessingTracerAspect" >
+		<aop:pointcut id="processor"
+			expression="execution(* *.process(..))" />
+		<aop:before method="logProcessingEvent" pointcut-ref="processor" />	
+	  </aop:aspect>
+	
+	</aop:config>
+
+</beans>
