@@ -48,11 +48,12 @@ NOTE: In order to use command line for this project, make sure that environment 
 ### 2. Move to the project directory (willyweather-test) and run maven install
   - $ mvn clean install
 ### 2. Move to the target directory (willyweather-test/target) and run jar with desired field e.g.
-  - $ java -jar TestProject.jar <fied
+  - $ java -jar TestProject.jar **<field>**
+  
   - Sample output:
 ```
 $ java -jar TestProject.jar MXSPD
-...
+
 TRACE: SourceDestination.getSource() --> args: []
 TRACE: SourceDestination.getDestination() --> args: []
 uc?export=download&amp;id=0B0QtYwzM6bVAZGNzUEhjeU9XRjg
