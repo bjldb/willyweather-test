@@ -12,9 +12,12 @@ code delivered and the design implemented.
 
 All the steps below need to be accomplished via java code.
 
-  1. Download source file: https://drive.google.com/open?id=0B0QtYwzM6bVAZGNzUEhjeU9XRjg&authuser=0
+  1. Download source file: **https://drive.google.com/open?id=0B0QtYwzM6bVAZGNzUEhjeU9XRjg&authuser=0**
   2. Unzip the file using any Java API.
   3. This is how the file looks:
+STN--- WBAN   YEARMODA    TEMP       DEWP      SLP        STP       VISIB      WDSP     MXSPD   GUST    MAX     MIN   PRCP   SNDP   FRSHTT
+007034 99999  20121104    85.5  7    38.7  7  9999.9  0  9999.9  0  999.9  0    1.2  7    5.1  999.9    91.4*   78.8*  0.00I 999.9  000000
+007034 99999  20121105    84.7  4    34.7  4  9999.9  0  9999.9  0  999.9  0    1.5  4    1.9  999.9    91.4*   75.2*  0.00I 999.9  000000
   4. Create a bean that stores all the info from the above file. The fields of the bean are the columns in the file above. Each row in the file is one Pojo.
   5. The user should be able to run the code from the command line using "java jar TestProject.jar"
   6. The user specifies a parameter called "field" from the command line. (e.g. java jar TestProject.jar Dfield="TEMP"). The field can be  EMP or DEWP. Depending on the field the code needs to call a processor. (so if field is TEMP then the processor is TempProcessor). Each processor has a method called process. For the test project, the process method prints the field values from all Pojo’s. So the TempProcessor would print 86,85 (values rounded, see 7 below)
