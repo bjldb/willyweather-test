@@ -87,7 +87,8 @@ NOTE: In order to use command line for this project, make sure that environment 
   - $ cd willyweather-test
   - $ mvn clean install
 ### 2. Move to the target directory (willyweather-test/target) and run jar with desired field e.g.
-  - $ java -jar TestProject.jar **<field>**
+  - $ cd target
+  - $ java -jar TestProject.jar **field**
   
   - Sample output:
 ```
