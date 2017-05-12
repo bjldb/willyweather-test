@@ -55,7 +55,25 @@
           </execution>
         </executions>
       </plugin>
-    	
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>exec-maven-plugin</artifactId>
+        <version>1.6.0</version>
+        <executions>
+          <execution>
+            <phase>test</phase>
+            <goals>
+              <goal>java</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <mainClass>com.willyweather.historicaldataparser.App</mainClass>
+          <arguments>
+            <argument>MXSPD</argument>
+          </arguments>
+        </configuration>
+      </plugin>
     </plugins>
 
   </build>
