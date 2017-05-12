@@ -23,17 +23,10 @@ STN--- WBAN   YEARMODA    TEMP       DEWP      SLP        STP       VISIB      W
 ```
 
   4. Create a bean that stores all the info from the above file. The fields of the bean are the columns in the file above. Each row in the file is one Pojo.
-  5. The user should be able to run the code from the command line using "java jar TestProject.jar"
-  6. The user specifies a parameter called "field" from the command line. (e.g. java jar TestProject.jar Dfield="TEMP"). The field can be  EMP or DEWP. Depending on the field the code needs to call a processor. (so if field is TEMP then the processor is TempProcessor). Each processor has a method called process. For the test project, the process method prints the field values from all Pojo’s. So the TempProcessor would print 86,85 (values rounded, see 7 below)
-  7. The processor needs to round up the values to the nearest integer. However, the method to round the values needs to be abstracted to a common class from which all processors can extend.
+  5. The user should be able to run the code from the command line using **java -jar TestProject.jar**
+  6. The user specifies a parameter called "field" from the command line. (e.g. java -jar TestProject.jar <**field**>). The **field** can be  EMP or DEWP. Depending on the **field** the code needs to call a **processor**. (so if field is **TEMP** then the processor is **TempProcessor**). Each processor has a method called **process**. For the test project, the process method prints the field values from all Pojo’s. So the TempProcessor would print 86,85 (values rounded, see 7 below)
+  7. The processor needs to **round up the values to the nearest integer**. However, the method to round the values needs to be abstracted to a common class from which all processors can extend.
   8. Use **Spring** to implement the project. All steps (unzip, processing) should be registered as beans. Log all methods using **Aspects**. The processing of input and output streams needs to be handle in a fail safe manner. Also, emphasis is placed on well formatted, clean and commented code.
-
-### 2. Special Offers and Promotions
-
-  * A 3 for 2 deal on Unlimited 1GB Sims. So for example, if you buy 3 Unlimited 1GB Sims, you will pay the price of 2 only for the first month.
-  * The Unlimited 5GB Sim will have a bulk discount applied; whereby the price will drop to $39.90 each for the first month, if the customer buys more than 3.
-  * We will bundle in a free 1 GB Data-pack free-of-charge with every Unlimited 2GB sold.
-  * Adding the promo code 'I<3AMAYSIM' will apply a 10% discount across the board.
 
 ## B. Implementation
 
