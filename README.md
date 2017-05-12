@@ -84,6 +84,7 @@ NOTE: In order to use command line for this project, make sure that environment 
 ### 1. Clone this project
   - $ git clone https://github.com/bjldb/willyweather-test.git
 ### 2. Move to the project directory (willyweather-test) and run maven install
+  - $ cd willyweather-test
   - $ mvn clean install
 ### 2. Move to the target directory (willyweather-test/target) and run jar with desired field e.g.
   - $ java -jar TestProject.jar **<field>**
