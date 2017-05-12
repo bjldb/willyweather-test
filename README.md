@@ -28,6 +28,44 @@ STN--- WBAN   YEARMODA    TEMP       DEWP      SLP        STP       VISIB      W
   7. The processor needs to **round up the values to the nearest integer**. However, the method to round the values needs to be abstracted to a common class from which all processors can extend.
   8. Use **Spring** to implement the project. All steps (unzip, processing) should be registered as beans. Log all methods using **Aspects**. The processing of input and output streams needs to be handle in a fail safe manner. Also, emphasis is placed on well formatted, clean and commented code.
 
+## B. Implementation
+
+### 1. The Procedure:
+
+  - This initial implementation treats the steps as a procedure:
+   
+  1. **Data Fetching** - fetching of data from a specific source
+  2. **Data Parsing** - parsing of fetched data
+  3. **Data Processing** - processing of parsed data
+  
+  - This procedure object is fully configurable in a Spring XML configuration file, and may injected with desired executor objects such as data fetcher, data parser, and data processor.
+
+### 2. The Executors:
+
+  1. **Data Fetchers** - objects that fetch data from a specific source and may be injected to a procedure so that it is executed during the procedure's Data Fetching step
+  2. **Data Parsers** - objects that parse data from a specific fetch destination location, and may be injected to a procedure so that it is executed during the procedure's Data Parsing step
+  3. **Data Processors** - objects that process parsed data, andt may be injected to a procedure so that it is executed during the procedure's Data Processing step
+  4. **Loggers** - objects that log information on a specific location 
+  5. **Aspects** - objects used for intercepting data in methods (currently used for logging)
+  
+### 3. Logging Aspects:
+
+  1. **Method Tracer** - logs method execution flow
+  2. **Exception Tracer** - logs thrown exceptions
+  3. **Fetched Data Tracer** - logs data fetching information: source, destination, and target data
+  4. **Parsed Weather Data Tracer** - logs parsed data (may be part or full)
+  5. **Data Processing Tracer** - logs processor involved in the data processing step
+  
+### 4. Limitations:
+
+  - This initial implementation sticks to the specification such that:
+   
+  1. fetching is limited to downloading the specified target file;
+  2. parsing is limited to the given format
+  3. logging is limited to the system output (console)
+  
+  - Nevertheless, implementation is created such that the program can be configurable with new data fetchers, parsers, and processors.  
+
 # TESTING THIS PROJECT
 
 ## A. Pre-requisites
